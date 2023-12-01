@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "go_sol/dayone"
 
+func main() {
+	dayone.DayOneMain()
 }

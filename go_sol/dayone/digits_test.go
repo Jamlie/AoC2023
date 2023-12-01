@@ -17,7 +17,7 @@ func TestGetFirstAndLastDigitsInAStringPartOne(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		actual, err := dayone.FirstAndLastDigitPartOne(test.input)
+		actual, err := dayone.FirstAndLastDigitsPartOne(test.input)
 		if err != nil {
 			t.Errorf("Error: %s", err)
 		}

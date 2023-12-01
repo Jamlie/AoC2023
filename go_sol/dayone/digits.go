@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func FirstAndLastDigitPartOne(s string) (int, error) {
+func FirstAndLastDigitsPartOne(s string) (int, error) {
 	var firstDigit, lastDigit byte
 
 	for _, char := range s {
@@ -96,34 +96,34 @@ func parseAndSum(firstChar, lastChar string) int {
 	return firstDigit*10 + lastDigit
 }
 
-// func test() {
-// 	file, err := os.Open("data.txt")
-// 	if err != nil {
-// 		fmt.Println(err)
-// 		os.Exit(1)
-// 	}
-// 	defer file.Close()
-//
-// 	var firstAndLastDigits []int
-// 	var line string
-//
-// 	for {
-// 		_, err := fmt.Fscanf(file, "%s\n", &line)
-// 		if err != nil {
-// 			break
-// 		}
-// 		digit, err := FirstAndLastDigitsPartTwo(line)
-// 		if err != nil {
-// 			fmt.Fprintf(os.Stderr, err.Error())
-// 			return
-// 		}
-// 		firstAndLastDigits = append(firstAndLastDigits, digit)
-// 	}
-//
-// 	var sum int
-// 	for _, digits := range firstAndLastDigits {
-// 		sum += digits
-// 	}
-//
-// 	fmt.Println(sum)
-// }
+func DayOneMain() {
+	file, err := os.Open("data.txt")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	var firstAndLastDigits []int
+	var line string
+
+	for {
+		_, err := fmt.Fscanf(file, "%s\n", &line)
+		if err != nil {
+			break
+		}
+		digit, err := FirstAndLastDigitsPartTwo(line)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, err.Error())
+			return
+		}
+		firstAndLastDigits = append(firstAndLastDigits, digit)
+	}
+
+	var sum int
+	for _, digits := range firstAndLastDigits {
+		sum += digits
+	}
+
+	fmt.Println(sum)
+}
