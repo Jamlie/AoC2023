@@ -93,7 +93,7 @@ func FirstAndLastDigitsPartTwo(s string) (int, error) {
 func parseAndSum(firstChar, lastChar string) int {
 	firstDigit, _ := strconv.Atoi(firstChar)
 	lastDigit, _ := strconv.Atoi(lastChar)
-	return firstDigit*10 + lastDigit
+	return firstDigit * 10 + lastDigit
 }
 
 func DayOneMain() {

@@ -1,7 +1,10 @@
 package main
 
-import "go_sol/dayone"
+import (
+	"go_sol/daytwo"
+)
 
 func main() {
-	dayone.DayOneMain()
+	// dayone.DayOneMain()
+	daytwo.DayTwoMain()
 }
