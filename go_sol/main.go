@@ -1,10 +1,11 @@
 package main
 
 import (
-	"go_sol/daytwo"
+	"go_sol/daythree"
 )
 
 func main() {
 	// dayone.DayOneMain()
-	daytwo.DayTwoMain()
+	// daytwo.DayTwoMain()
+	daythree.DayThreeMain()
 }
