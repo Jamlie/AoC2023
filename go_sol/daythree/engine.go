@@ -12,14 +12,7 @@ import (
 //go:embed data.txt
 var input string
 
-type PartType int
-
-const (
-	PartOne PartType = iota
-	PartTwo
-)
-
-func EnginePartNumbers(data *string, partType PartType) (int, int) {
+func EnginePartNumbers(data *string, partType utils.PartType) (int, int) {
 	matrix := map[utils.Coordinates2D]rune{}
 	for idx, line := range strings.Fields(string(*data)) {
 		for jdx, ch := range line {
@@ -94,20 +87,20 @@ func EnginePartNumbers(data *string, partType PartType) (int, int) {
 	for coord, nums := range parts {
 		product := 1
 		for _, num := range nums {
-			if partType == PartOne {
+			if partType == utils.PartOne {
 				part1 += num
 			} else {
 				product *= num
 			}
 		}
-		if partType == PartTwo {
+		if partType == utils.PartTwo {
 			if matrix[coord] == '*' && len(nums) == 2 {
 				part2 += product
 			}
 		}
 	}
 
-	if partType == PartOne {
+	if partType == utils.PartOne {
 		return part1, 0
 	}
 
@@ -115,7 +108,7 @@ func EnginePartNumbers(data *string, partType PartType) (int, int) {
 }
 
 func DayThreeMain() {
-	part1, part2 := EnginePartNumbers(&input, PartOne)
+	part1, part2 := EnginePartNumbers(&input, utils.PartTwo)
 	fmt.Printf("Part 1: %d\n", part1)
 	fmt.Printf("Part 2: %d\n", part2)
 }

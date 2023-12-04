@@ -2,21 +2,15 @@ package daytwo
 
 import (
 	"bufio"
+	_ "embed"
 	"fmt"
+	"go_sol/utils"
 	"log"
 	"strings"
-	_ "embed"
 )
 
 //go:embed data.txt
 var input string
-
-type GameType int
-
-const (
-	PartOne GameType = iota
-	PartTwo
-)
 
 type Game struct {
 	Id		int
@@ -38,7 +32,7 @@ func (g *Game) String() string {
 	return fmt.Sprintf("Game %d: %d blue, %d red, %d green", g.Id, g.Blue, g.Red, g.Green)
 }
 
-func PossibleGames(s string, gameType GameType) (*Game, bool) {
+func PossibleGames(s string, gameType utils.PartType) (*Game, bool) {
 	var id, red, blue, green int
 	game := NewGame()
 
@@ -65,7 +59,7 @@ func PossibleGames(s string, gameType GameType) (*Game, bool) {
 				return NewGame(), false
 			}
 
-			if gameType == PartOne {
+			if gameType == utils.PartOne {
 				switch color {
 				case "blue":
 					if count > 14 {
@@ -110,57 +104,12 @@ func PossibleGames(s string, gameType GameType) (*Game, bool) {
 	return game, true
 }
 
-// func PossibleGamesPartTwo(s string) (*Game, bool) {
-// 	var id, red, blue, green int
-// 	game := NewGame()
-//
-// 	_, err := fmt.Sscanf(s, "Game %d:", &id)
-// 	if err != nil {
-// 		return NewGame(), false
-// 	}
-//
-// 	game.Id = id
-//
-// 	indexOfColor := strings.Index(s, ":")
-// 	if indexOfColor == -1 {
-// 		return NewGame(), false
-// 	}
-//
-// 	colors := s[indexOfColor+2:]
-// 	var count int
-//
-// 	for _, color := range strings.Split(colors, ";") {
-// 		splitColor := strings.Split(color, ",")
-// 		for _, c := range splitColor {
-// 			_, err := fmt.Sscanf(strings.TrimSpace(c), "%d %s", &count, &color)
-// 			if err != nil {
-// 				return NewGame(), false
-// 			}
-//
-// 			switch color {
-// 			case "blue":
-// 				blue = max(blue, count)
-// 			case "red":
-// 				red = max(red, count)
-// 			case "green":
-// 				green = max(green, count)
-// 			}
-// 		}
-// 	}
-//
-// 	game.Blue = blue
-// 	game.Red = red
-// 	game.Green = green
-//
-// 	return game, true
-// }
-
 func DayTwoMain() {
 	var possibleGames []*Game
 	scanner := bufio.NewScanner(strings.NewReader(input))
 
 	for scanner.Scan() {
-		game, ok := PossibleGames(scanner.Text(), PartTwo)
+		game, ok := PossibleGames(scanner.Text(), utils.PartTwo)
 		if !ok {
 			fmt.Println(game, "is not possible")
 		} else {
@@ -173,6 +122,13 @@ func DayTwoMain() {
 	}
 
 	sum := 0
+
+	// part one
+	// for _, id := range possibleGames {
+	// 	sum += id.Id
+	// }
+	//
+	// fmt.Println("Sum of possible games:", sum)
 
 	// part two
 	for i := range possibleGames {
@@ -200,9 +156,4 @@ func DayTwoMain() {
 	//
 	// sum := 0
 	//
-	// for _, id := range possibleGames {
-	// 	sum += id.Id
-	// }
-	//
-	// fmt.Println("Sum of possible games:", sum)
 }
